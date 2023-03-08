@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Crime Detection</title>
+<h2>Select a video to upload</h2>
+{% if filename =='1.mp4' %}
+	<div style="margin: 10px auto;">
+			<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+	</div>
+{% endif %}
+
+<li class="active"><a href="{{ url_for('log') }}">Log </a></li>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<body>
+<title>Crime Detection</title>
+	<style>
+	body
+	{
+		background-image:url({{url_for('static',filename='img/5.jpg')}})
+	}
+	</style>
+<h2 style="color:white;font-size:20;text-align: center;">Select a video to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+{% if filename %}
+	<div style="margin: 10px auto;">
+		<center><video autoplay="autoplay" controls="controls" preload="preload">
+			<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+		</video></center>
+	</div>
+{% endif %}
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p><center>
+			<input type="file" name="file" autocomplete="off" required>
+		</p></center>
+    </dl>
+    <p><center>
+		<input type="submit" value="Upload">
+	</p></center>
+
+</form>
+
+<center>
+<p id="demo"></p></center>
+
+{% if filename == '1.mp4'%}
+	<h2 style="color:white;"> <center> NO CRIME </center></h2>
+{% else %}
+	<h2 style="color:white;"> <center> CRIME <center></h2>
+{% endif %}
+
+</script>
+</body>
+</html>
